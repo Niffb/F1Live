@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/F1Live/static/css/main.e5411d83.css",
+    "main.js": "/F1Live/static/js/main.c0016143.js",
+    "static/js/453.689f2232.chunk.js": "/F1Live/static/js/453.689f2232.chunk.js",
+    "index.html": "/F1Live/index.html",
+    "main.e5411d83.css.map": "/F1Live/static/css/main.e5411d83.css.map",
+    "main.c0016143.js.map": "/F1Live/static/js/main.c0016143.js.map",
+    "453.689f2232.chunk.js.map": "/F1Live/static/js/453.689f2232.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e5411d83.css",
+    "static/js/main.c0016143.js"
+  ]
+}
