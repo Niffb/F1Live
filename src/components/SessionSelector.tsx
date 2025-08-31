@@ -67,7 +67,7 @@ export const SessionSelector: React.FC<SessionSelectorProps> = ({
     }
   };
 
-  const years = [2024, 2023, 2022, 2021];
+  const years = [2025, 2024, 2023, 2022, 2021];
 
   if (loading) {
     return (
