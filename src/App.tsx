@@ -184,7 +184,7 @@ function App() {
               <p className="mt-1">Last updated: {lastUpdate.toLocaleTimeString()}</p>
             </div>
             <div className="text-center sm:text-right">
-              <p>Unofficial Formula 1 Dashboard</p>
+              <p>Designed & Developed by <span className="text-f1-red font-semibold">Nathaniel Bareham</span></p>
               <p className="mt-1">Built with React & TypeScript</p>
             </div>
           </div>
