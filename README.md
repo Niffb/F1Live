@@ -2,7 +2,7 @@
 
 A modern Formula 1 data dashboard with live timing, telemetry, and race control information.
 
-**[🏁 Live Demo](https://your-username.github.io/f1-live-dashboard)**
+**[🏁 Live Demo](https://niffb.github.io)**
 
 ## Features
 
