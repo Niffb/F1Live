@@ -5,6 +5,7 @@ import { Session, Driver, Position, Lap, RaceControl } from '../types/f1';
 
 interface RaceReplayProps {
   session: Session | null;
+  selectedDrivers?: number[];
 }
 
 interface PositionChartData {
@@ -35,7 +36,7 @@ interface PositionChartData {
   }[];
 }
 
-const RaceReplay: React.FC<RaceReplayProps> = ({ session }) => {
+const RaceReplay: React.FC<RaceReplayProps> = ({ session, selectedDrivers = [] }) => {
   const [chartData, setChartData] = useState<PositionChartData[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -77,8 +78,13 @@ const RaceReplay: React.FC<RaceReplayProps> = ({ session }) => {
       // Get qualifying positions (starting grid)
       const qualifyingData = await getQualifyingPositions(session, drivers);
 
+      // Filter drivers if specific drivers are selected
+      const filteredDrivers = selectedDrivers.length > 0 
+        ? drivers.filter(driver => selectedDrivers.includes(driver.driver_number))
+        : drivers;
+
       // Process race data into position chart format
-      const processedData = processRaceData(drivers, positions, laps, qualifyingData, raceControl);
+      const processedData = processRaceData(filteredDrivers, positions, laps, qualifyingData, raceControl);
       setChartData(processedData);
 
     } catch (err) {
@@ -87,7 +93,7 @@ const RaceReplay: React.FC<RaceReplayProps> = ({ session }) => {
     } finally {
       setLoading(false);
     }
-  }, [session]);
+  }, [session, selectedDrivers]);
 
   const getQualifyingPositions = async (session: Session, drivers: Driver[]): Promise<{ [key: number]: number }> => {
     try {
