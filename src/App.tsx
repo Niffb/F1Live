@@ -151,7 +151,7 @@ function App() {
             {/* Tab Content */}
             <div className="space-y-6">
               {activeTab === 'timing' && (
-                <LiveTiming sessionKey={selectedSessionKey} />
+                <LiveTiming sessionKey={selectedSessionKey} selectedDrivers={selectedDrivers} />
               )}
               
               {activeTab === 'telemetry' && (
@@ -166,7 +166,7 @@ function App() {
               )}
               
               {activeTab === 'replay' && (
-                <RaceReplay session={currentSession} />
+                <RaceReplay session={currentSession} selectedDrivers={selectedDrivers} />
               )}
               
 

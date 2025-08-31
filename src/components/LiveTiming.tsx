@@ -5,6 +5,7 @@ import { Trophy, Clock, Flag } from 'lucide-react';
 
 interface LiveTimingProps {
   sessionKey: number | string;
+  selectedDrivers?: number[];
 }
 
 interface DriverTimingData {
@@ -13,7 +14,7 @@ interface DriverTimingData {
   latestLap: Lap | null;
 }
 
-export const LiveTiming: React.FC<LiveTimingProps> = ({ sessionKey }) => {
+export const LiveTiming: React.FC<LiveTimingProps> = ({ sessionKey, selectedDrivers = [] }) => {
   const [timingData, setTimingData] = useState<DriverTimingData[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -51,9 +52,16 @@ export const LiveTiming: React.FC<LiveTimingProps> = ({ sessionKey }) => {
         }
       });
 
-      const sortedData = Array.from(timingMap.values())
+      let sortedData = Array.from(timingMap.values())
         .filter(data => data.position)
         .sort((a, b) => (a.position?.position || 999) - (b.position?.position || 999));
+
+      // Filter by selected drivers if any are selected
+      if (selectedDrivers.length > 0) {
+        sortedData = sortedData.filter(data => 
+          selectedDrivers.includes(data.driver.driver_number)
+        );
+      }
 
       setTimingData(sortedData);
     } catch (err) {
@@ -61,7 +69,7 @@ export const LiveTiming: React.FC<LiveTimingProps> = ({ sessionKey }) => {
     } finally {
       setLoading(false);
     }
-  }, [sessionKey]);
+  }, [sessionKey, selectedDrivers]);
 
   useEffect(() => {
     fetchTimingData();
