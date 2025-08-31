@@ -7,7 +7,7 @@ interface ChampionshipStandingsProps {
   year?: number;
 }
 
-const ChampionshipStandings: React.FC<ChampionshipStandingsProps> = ({ year = 2024 }) => {
+const ChampionshipStandings: React.FC<ChampionshipStandingsProps> = ({ year = 2025 }) => {
   const [championshipData, setChampionshipData] = useState<ChampionshipData | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
